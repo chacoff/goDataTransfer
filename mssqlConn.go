@@ -27,6 +27,7 @@ func NewDBConn(config DBConfig) (*DBConn, error) {
 	u := &url.URL{
 		Scheme: "sqlserver",
 		// User:   url.UserPassword("LPESCSVCDIQST", "3+5Nfdrp"),
+		User:     url.UserPassword("azrsqlqst", "nM&9V!!JXX#g2vK@&Y$d"),
 		Host:     fmt.Sprintf("%s:%d", config.Server, config.Port),
 		RawQuery: query.Encode(),
 	}

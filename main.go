@@ -10,9 +10,9 @@ import (
 func main() {
 
 	config := DBConfig{
-		Server:   "139.53.211.202",
-		Port:     0, // 1433
-		Database: "QST_Dev",
+		Server:   "sql-alp-archqst-001.database.windows.net", // "139.53.211.202",
+		Port:     0,                                          // 1433
+		Database: "QSTARCHIVES",                              // "QST_Dev",
 		AppName:  "autoTransfer",
 	}
 
@@ -29,7 +29,8 @@ func main() {
 		fmt.Println(ok)
 	}
 
-	query := "SELECT TOP 1 * FROM Archive.MeasurementAggregation"
+	// query := "SELECT * FROM Archive.MeasurementAggregation WHERE Timestamp BETWEEN '2023-12-01' AND '2023-12-02'"
+	query := "SELECT TOP 1 * FROM dbo.MeasurementAggregations ORDER BY Id desc"
 	rows, err := conn.Query(query)
 	if err != nil {
 		fmt.Println("Query error:", err)
@@ -77,7 +78,7 @@ func main() {
 			}
 		}
 
-		fmt.Println(strings.Join(rowData, " | "))
+		// fmt.Println(strings.Join(rowData, " | "))
 		fmt.Println(rowData)
 	}
 
